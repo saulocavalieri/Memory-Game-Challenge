@@ -10,10 +10,25 @@ var secondOption = null;
 createGame(columns, lines);
 
 function createGame(columns, lines) {
-  var vector = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
+  //Create a vector with columns and lines informed
+  var vector = [];
+  for (var k = 0; k < (columns * lines) / 2; k++) {
+    vector.push(k);
+    vector.push(k);
+  }
+
+  //Create a shuffle vector
+  var shuffle = [];
+  while (vector.length > 0) {
+    var random = Math.floor(Math.random() * vector.length);
+    shuffle.push(vector[random]);
+    vector.splice(random, 1);
+  }
+
+  //Generate with my shuffle vector
   for (var x = 0; x < columns; x++) {
     for (var y = 0; y < lines; y++) {
-      createCards(vector.pop(), x, y);
+      createCards(shuffle.pop(), x, y);
     }
   }
 }
@@ -34,5 +49,30 @@ function createCards(cardNum, posX, posY) {
 function clickedCard(e) {
   var clicked = e.target;
 
-  clicked.src = "./assets/img/card" + clicked.num + ".png";
+  if (firstOption == null) {
+    clicked.src = "./assets/img/card" + clicked.num + ".png";
+    firstOption = clicked;
+    
+  } else if (firstOption == clicked) {
+    firstOption.src = "./assets/img/back.png";
+    firstOption = null;
+    
+  } else if (secondOption == null) {
+    clicked.src = "./assets/img/card" + clicked.num + ".png";
+    secondOption = clicked;
+    setTimeout(checkOptions, 1000);
+  }
+}
+
+function checkOptions() {
+  if (firstOption.num == secondOption.num) {
+    game.removeChild(firstOption);
+    game.removeChild(secondOption);
+  } else {
+    firstOption.src = "./assets/img/back.png";
+    secondOption.src = "./assets/img/back.png";
+  }
+
+  firstOption = null;
+  secondOption = null;
 }
