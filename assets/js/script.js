@@ -10,10 +10,10 @@ var secondOption = null;
 createGame(columns, lines);
 
 function createGame(columns, lines) {
-  //Generate with my shuffle vector
+  var vector = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7];
   for (var x = 0; x < columns; x++) {
     for (var y = 0; y < lines; y++) {
-      createCards(0, x, y);
+      createCards(vector.pop(), x, y);
     }
   }
 }
@@ -34,5 +34,5 @@ function createCards(cardNum, posX, posY) {
 function clickedCard(e) {
   var clicked = e.target;
 
-  alert(clicked.num);
+  clicked.src = "./assets/img/card" + clicked.num + ".png";
 }
