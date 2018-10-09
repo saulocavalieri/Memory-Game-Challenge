@@ -6,13 +6,15 @@ var columns = 4;
 var lines = 4;
 var firstOption = null;
 var secondOption = null;
+var size = (columns * lines) / 2;
+var endGame = 0;
 
 createGame(columns, lines);
 
 function createGame(columns, lines) {
   //Create a vector with columns and lines informed
   var vector = [];
-  for (var k = 0; k < (columns * lines) / 2; k++) {
+  for (var k = 0; k < size; k++) {
     vector.push(k);
     vector.push(k);
   }
@@ -52,11 +54,9 @@ function clickedCard(e) {
   if (firstOption == null) {
     clicked.src = "./assets/img/card" + clicked.num + ".png";
     firstOption = clicked;
-    
   } else if (firstOption == clicked) {
     firstOption.src = "./assets/img/back.png";
     firstOption = null;
-    
   } else if (secondOption == null) {
     clicked.src = "./assets/img/card" + clicked.num + ".png";
     secondOption = clicked;
@@ -68,6 +68,10 @@ function checkOptions() {
   if (firstOption.num == secondOption.num) {
     game.removeChild(firstOption);
     game.removeChild(secondOption);
+    endGame++;
+    if (endGame >= size) {
+        alert(endGame);
+    }
   } else {
     firstOption.src = "./assets/img/back.png";
     secondOption.src = "./assets/img/back.png";
