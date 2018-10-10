@@ -3,6 +3,7 @@ html {
 }
 body{
     min-height: 100vh;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 #memory-game {
@@ -20,4 +21,6 @@ body{
     position: absolute;
     top: 280px;
     left: 175px;
+    font-size: 18px;
+    color: #ec1940;
 }
