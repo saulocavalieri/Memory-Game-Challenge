@@ -42,7 +42,8 @@ function createCards(cardNum, posX, posY) {
   card.num = cardNum;
   card.src = "./assets/img/back.png";
   //webkit below - prevent drag and select all the images
-  card.style.cssText = "-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;";
+  card.style.cssText =
+    "-webkit-user-select: none; -khtml-user-select: none; -moz-user-select: none; -o-user-select: none; user-select: none; -webkit-user-drag: none; -khtml-user-drag: none; -moz-user-drag: none; -o-user-drag: none; user-drag: none;";
   card.style.position = "absolute";
   card.style.left = posX * (cardSize + cardSpacing) + cardSpacing + "px";
   card.style.top = posY * (cardSize + cardSpacing) + cardSpacing + "px";
@@ -89,6 +90,11 @@ function checkOptions() {
   storage = null;
 }
 
+
 function thanksCiandt() {
   document.getElementById("end-game").style.visibility = "visible";
+}
+
+function reset() {
+  window.location.reload(true);
 }
