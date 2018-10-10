@@ -8,6 +8,7 @@ var firstOption = null;
 var secondOption = null;
 var size = (columns * lines) / 2;
 var endGame = 0;
+var storage = null;
 
 createGame(columns, lines);
 
@@ -41,26 +42,30 @@ function createCards(cardNum, posX, posY) {
   card.num = cardNum;
   card.src = "./assets/img/back.png";
   card.style.position = "absolute";
-  card.style.left = 10 + posX * (cardSize + cardSpacing) + 8 + "px";
-  card.style.top = 15 + posY * (cardSize + cardSpacing) + 75 + "px";
+  card.style.left = posX * (cardSize + cardSpacing) + cardSpacing + "px";
+  card.style.top = posY * (cardSize + cardSpacing) + cardSpacing + "px";
   card.onclick = clickedCard;
   game.appendChild(card);
 }
 
 //Selected card by the user
 function clickedCard(e) {
+  if (storage != null) {
+    clearTimeout(storage);
+    checkOptions();
+  }
+
   var clicked = e.target;
+  clicked.src = "./assets/img/card" + clicked.num + ".png";
 
   if (firstOption == null) {
-    clicked.src = "./assets/img/card" + clicked.num + ".png";
     firstOption = clicked;
   } else if (firstOption == clicked) {
     firstOption.src = "./assets/img/back.png";
     firstOption = null;
   } else if (secondOption == null) {
-    clicked.src = "./assets/img/card" + clicked.num + ".png";
     secondOption = clicked;
-    setTimeout(checkOptions, 1000);
+    storage = setTimeout(checkOptions, 1000);
   }
 }
 
@@ -70,7 +75,7 @@ function checkOptions() {
     game.removeChild(secondOption);
     endGame++;
     if (endGame >= size) {
-        alert(endGame);
+      thanksCiandt();
     }
   } else {
     firstOption.src = "./assets/img/back.png";
@@ -79,4 +84,9 @@ function checkOptions() {
 
   firstOption = null;
   secondOption = null;
+  storage = null;
+}
+
+function thanksCiandt() {
+  document.getElementById("end-game").style.visibility = "visible";
 }

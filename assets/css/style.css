@@ -1,5 +1,23 @@
+html {
+    height: 100vh;
+}
+body{
+    min-height: 100vh;
+}
+
 #memory-game {
     border: 1px solid black;
+    position: relative;
+}
+
+.base {
     height: 450px;
     width: 450px;
+}
+
+#end-game {
+    visibility: hidden;
+    position: absolute;
+    top: 280px;
+    left: 175px;
 }
