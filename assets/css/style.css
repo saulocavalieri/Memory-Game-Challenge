@@ -24,10 +24,11 @@ body {
     left: 175px;
     font-size: 18px;
     color: #ec1940;
-
+    z-index: -1;
 }
 
-#btnGame {
+#btn-game {
+    visibility: hidden;
     padding-left: 145px;
 }
 

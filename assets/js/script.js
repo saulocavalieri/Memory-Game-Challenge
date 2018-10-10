@@ -93,6 +93,7 @@ function checkOptions() {
 
 function thanksCiandt() {
   document.getElementById("end-game").style.visibility = "visible";
+  document.getElementById("btn-game").style.visibility = "visible";
 }
 
 function reset() {
